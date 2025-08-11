@@ -64,7 +64,7 @@ export default {
 					}
 				},
 				fontFamily: {
-					fraktur: ['UnifrakturMaguntia', 'serif'],
+					display: ['"Playfair Display"', 'serif'],
 					monoTech: ['"Space Mono"', 'monospace']
 				},
 				borderRadius: {

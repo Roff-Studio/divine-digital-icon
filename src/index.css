@@ -52,6 +52,7 @@
     --neon-cyan: 180 100% 50%;
     --metal-gold: 51 100% 50%;        /* #ffd700 */
     --metal-silver: 0 0% 75%;         /* #c0c0c0 */
+    --banner: 0 0% 13.3%;             /* #222222 */
   }
 }
 
@@ -60,12 +61,7 @@
   body { @apply bg-background text-foreground font-monoTech antialiased; }
 
   /* Typography */
-  h1, h2 { @apply font-fraktur; }
-  h1, h2 {
-    text-shadow:
-      0 0 12px hsl(var(--neon-magenta) / 0.45),
-      0 0 28px hsl(var(--neon-magenta) / 0.18);
-  }
+  h1, h2, h3 { @apply font-display font-bold; }
 
   a { @apply text-foreground transition-colors duration-200; }
   a:hover { @apply text-secondary; }
@@ -102,6 +98,9 @@
   .vignette-dark {
     background: radial-gradient(1200px 600px at 50% 60%, hsl(0 0% 0% / 0) 0%, hsl(0 0% 0% / 0.35) 70%, hsl(0 0% 0% / 0.7) 100%);
   }
+
+  /* Banner background */
+  .bg-banner { background-color: hsl(var(--banner)); }
 }
 
 /* Elegant text sheen for hero heading */
