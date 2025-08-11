@@ -46,6 +46,23 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Brand Purpose Bridge */}
+        <section aria-labelledby="purpose-title" className="container mx-auto py-16">
+          <h2 id="purpose-title" className="text-3xl sm:text-4xl text-center mb-8">Laboratorio de Estilo y Autoexpresión.</h2>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {["ROPA","ACCESORIOS","ZAPATILLAS","JOYERÍA","ARTE PERSONALIZADO"].map((tag, i) => (
+              <span
+                key={tag}
+                className="bg-banner text-foreground font-monoTech uppercase tracking-wider text-xs sm:text-sm px-4 py-2 rounded-full border border-border/60 animate-fade-in"
+                style={{ animationDelay: `${i * 0.15}s` }}
+                aria-label={tag}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </section>
+
         {/* Featured Products */}
         <section id="tienda" className="container mx-auto py-20">
           <h2 className="text-3xl sm:text-4xl mb-8">Reliquias Digitales</h2>
