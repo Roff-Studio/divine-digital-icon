@@ -1,10 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import heroImage from "@/assets/hero-digital-gothic.jpg";
+import heroImage from "@/assets/hero-satin-crystal.jpg";
 import luxPortrait from "@/assets/lux-profanum-portrait.jpg";
-import { Globe, Radio, Share2 } from "lucide-react";
+import { Radio, Share2 } from "lucide-react";
+import { useState } from "react";
+import type React from "react";
 
 const Index = () => {
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const prefersReduced = typeof window !== "undefined" && !!window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const handleParallax = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (prefersReduced) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    const max = 12; // max px movement
+    setOffset({ x: (0.5 - x) * max, y: (0.5 - y) * max });
+  };
+
   return (
     <div>
       <header className="fixed top-0 inset-x-0 z-50 bg-background/60 backdrop-blur-lg border-b border-primary">
@@ -22,11 +35,21 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section id="inicio" className="relative h-[100vh] w-full flex items-center justify-center">
-          <img src={heroImage} alt="Fondo gótico digital con vitral y circuitos" className="absolute inset-0 h-full w-full object-cover" loading="eager" />
+        <section id="inicio" className="relative h-[100vh] w-full flex items-center justify-center overflow-hidden">
+          <div
+            className="absolute inset-0 hero-parallax-img"
+            style={{
+              backgroundImage: `url(${heroImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`,
+            }}
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 overlay-40" aria-hidden="true" />
           <div className="absolute inset-0 vignette-dark" aria-hidden="true" />
-          <div className="relative z-10 text-center px-6 animate-enter">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl mb-2">Ama tu glitch</h1>
+          <div className="relative z-10 text-center px-6 animate-enter" onMouseMove={handleParallax} onMouseLeave={() => setOffset({ x: 0, y: 0 })}>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl mb-2 text-sheen">Ama tu glitch</h1>
             <h2 className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-8">en él habita tu verdad.</h2>
             <Button variant="neonMagenta" size="lg" asChild>
               <a href="#tienda" aria-label="Explorar reliquias" className="px-8 py-3">EXPLORAR RELIQUIAS</a>
