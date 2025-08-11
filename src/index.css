@@ -2,104 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* Digital Gothic Design System - HSL tokens only */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core palette - Dark only */
+    --background: 0 0% 6.7%;          /* #111111 */
+    --foreground: 0 0% 94.1%;         /* #f0f0f0 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 94.1%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 94.1%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Accents */
+    --primary: 300 100% 50%;          /* Magenta neon #ff00ff */
+    --primary-foreground: 0 0% 6%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 180 100% 50%;        /* Cyan neon #00ffff */
+    --secondary-foreground: 0 0% 6%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 6%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 300 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.65rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Sidebar (kept for compat) */
+    --sidebar-background: 0 0% 6.7%;
+    --sidebar-foreground: 0 0% 94.1%;
+    --sidebar-primary: 300 100% 50%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 180 100% 50%;
+    --sidebar-accent-foreground: 0 0% 6%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 300 100% 50%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Neons & Metallics */
+    --neon-magenta: 300 100% 50%;
+    --neon-cyan: 180 100% 50%;
+    --metal-gold: 51 100% 50%;        /* #ffd700 */
+    --metal-silver: 0 0% 75%;         /* #c0c0c0 */
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground font-monoTech antialiased; }
+
+  /* Typography */
+  h1, h2 { @apply font-fraktur; }
+  h1, h2 {
+    text-shadow:
+      0 0 12px hsl(var(--neon-magenta) / 0.45),
+      0 0 28px hsl(var(--neon-magenta) / 0.18);
   }
 
-  body {
-    @apply bg-background text-foreground;
+  a { @apply text-foreground transition-colors duration-200; }
+  a:hover { @apply text-secondary; }
+}
+
+/* Utilities and component tokens */
+@layer utilities {
+  /* Neon glows for hover states */
+  .neon-shadow-magenta { box-shadow: 0 0 12px hsl(var(--neon-magenta) / 0.7), 0 0 32px hsl(var(--neon-magenta) / 0.35); }
+  .hover\:neon-shadow-magenta:hover { box-shadow: 0 0 12px hsl(var(--neon-magenta) / 0.7), 0 0 32px hsl(var(--neon-magenta) / 0.35); }
+  .neon-shadow-cyan { box-shadow: 0 0 12px hsl(var(--neon-cyan) / 0.7), 0 0 32px hsl(var(--neon-cyan) / 0.35); }
+  .hover\:neon-shadow-cyan:hover { box-shadow: 0 0 12px hsl(var(--neon-cyan) / 0.7), 0 0 32px hsl(var(--neon-cyan) / 0.35); }
+
+  /* Product card surface + hover */
+  .card-surface { background-color: hsl(var(--foreground) / 0.05); }
+  .card-hover-neon { border-color: transparent; transition: transform 200ms ease, box-shadow 250ms ease, border-color 250ms ease; }
+  .card-hover-neon:hover { border-color: hsl(var(--primary)); transform: translateY(-5px); box-shadow: 0 0 12px hsl(var(--primary) / 0.25); }
+
+  /* Underline animation utility (story-link) */
+  .story-link { position: relative; display: inline-block; }
+  .story-link::after {
+    content: "";
+    position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+    background: hsl(var(--primary)); transform: scaleX(0); transform-origin: bottom right;
+    transition: transform 300ms ease;
+  }
+  .story-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+
+  /* Hover scale utility */
+  .hover-scale { transition: transform 200ms ease; }
+  .hover-scale:hover { transform: scale(1.05); }
+
+  /* Vignette helper for hero */
+  .vignette-dark {
+    background: radial-gradient(1200px 600px at 50% 60%, hsl(0 0% 0% / 0) 0%, hsl(0 0% 0% / 0.35) 70%, hsl(0 0% 0% / 0.7) 100%);
   }
 }
